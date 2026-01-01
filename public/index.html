@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Угадай мелодию — кнопка</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-role="player">
+    <main>
+      <div class="stack fade-in">
+        <div class="row" style="justify-content: space-between;">
+          <div id="introBlock">
+            <h1>Кнопка команды</h1>
+            <p>Введите название команды и ждите старта раунда.</p>
+          </div>
+          <div class="pill" id="connPill"><span class="status-dot" id="connDot"></span><span id="connText">offline</span></div>
+        </div>
+
+        <section class="card" id="joinCard">
+          <div class="stack">
+            <label for="teamName" class="small">Название команды</label>
+            <input id="teamName" type="text" placeholder="Например: Синтезаторы" maxlength="24" />
+            <div class="row">
+              <button id="joinBtn">Подключиться</button>
+              <span id="joinError" class="mono"></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card hidden" id="buzzCard">
+          <div class="stack">
+            <div class="row" id="teamInfoRow" style="justify-content: space-between;">
+              <div>
+                <h2 id="teamLabel">Команда</h2>
+                <p id="statusLine">Ожидайте начала раунда</p>
+              </div>
+              <div class="pill"><span class="mono" id="roundLabel">Раунд —</span></div>
+            </div>
+            <h2 class="team-title" id="teamNameDisplay">Команда</h2>
+            <button class="buzz-button" id="buzzBtn" disabled>ЖМИ!</button>
+            <div class="stack">
+              <div class="row" style="justify-content: space-between;">
+                <span class="mono" id="scoreLine">Очки: 0</span>
+                <span class="badge good hidden" id="reactionLine">+1</span>
+              </div>
+              <h3 class="small">Статистика</h3>
+              <span class="mono" id="pointsLine">Исполнитель: 0 · Название: 0 · Полные песни: 0</span>
+              <span class="mono" id="timesLine">Минимум: — · Среднее: —</span>
+              <span class="mono" id="missesLine">Промахи: 0</span>
+            </div>
+            <div class="row" style="justify-content: space-between;">
+              <span class="mono" id="timerLine"></span>
+              <span class="mono" id="lockoutLine"></span>
+            </div>
+          </div>
+        </section>
+
+        <p class="small" id="infoNote">Если связь пропала, просто обновите страницу — команда сохранится.</p>
+      </div>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+  </body>
+</html>

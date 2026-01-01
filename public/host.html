@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Угадай мелодию — ведущий</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-role="host">
+    <main>
+      <div class="stack fade-in">
+        <div class="row" style="justify-content: space-between; align-items: center;">
+          <h1>Дэшборд ведущего</h1>
+          <div class="row header-actions">
+            <div class="row header-link">
+              <input id="playerLink" type="text" readonly />
+              <button class="icon-button" id="copyLinkBtn" aria-label="Копировать" title="Копировать">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M8 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V8zm-3 8a2 2 0 0 0 2 2h1v-2H7V6h8V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v11z"
+                  />
+                </svg>
+              </button>
+              <img id="playerQr" class="qr-image" alt="QR для игроков" />
+            </div>
+            <div class="pill"><span class="status-dot" id="connDot"></span><span id="connText">offline</span></div>
+          </div>
+        </div>
+
+        <section class="card grid two">
+          <div class="stack">
+            <h2>Раунд</h2>
+            <div class="row">
+              <div class="pill"><span class="mono" id="roundLabel">Раунд —</span></div>
+              <div class="pill"><span class="mono" id="roundStatus">Ожидание старта</span></div>
+            </div>
+            <div class="row">
+              <button id="startRoundBtn">Старт раунда</button>
+              <button class="secondary" id="endRoundBtn" disabled>Завершить раунд</button>
+              <button class="ghost" id="resetGameBtn">Сбросить игру</button>
+            </div>
+          </div>
+          <div class="stack">
+            <h2>Настройки времени</h2>
+            <div class="row">
+              <label class="small" for="answerTime">Ответ (сек)</label>
+              <input id="answerTime" type="number" min="1" max="30" step="0.5" />
+            </div>
+            <div class="row">
+              <label class="small" for="lockoutTime">Блокировка (сек)</label>
+              <input id="lockoutTime" type="number" min="0" max="60" step="0.5" />
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="row" style="justify-content: space-between;">
+            <h2>Ответ команды</h2>
+            <span class="badge" id="answerBadge">Ожидание</span>
+          </div>
+          <div class="row" style="justify-content: space-between; align-items: flex-end;">
+            <div>
+              <h3 id="answerTeam">—</h3>
+              <p id="answerTimer" class="mono">Таймер: —</p>
+            </div>
+            <div class="row">
+              <button class="secondary" id="markAll" disabled>Всё</button>
+              <button id="markArtist" disabled>Исполнитель</button>
+              <button id="markTitle" disabled>Название</button>
+              <button class="ghost" id="markIncorrect" disabled>Неправильно</button>
+            </div>
+          </div>
+          <div class="stack">
+            <span class="mono">Исполнитель: <strong id="artistAnswer">—</strong></span>
+            <span class="mono">Название: <strong id="titleAnswer">—</strong></span>
+          </div>
+        </section>
+
+        <section class="grid two">
+          <div class="card">
+            <h2>Команды</h2>
+            <div id="teamsList" class="list"></div>
+          </div>
+          <div class="card">
+            <h2>Лог нажатий</h2>
+            <div id="buzzLog" class="list"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="host.js"></script>
+  </body>
+</html>

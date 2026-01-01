@@ -1,0 +1,14 @@
+{
+  "name": "guess-the-melody",
+  "version": "1.0.0",
+  "description": "Local buzzer app for a Guess the Melody game",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "qrcode": "^1.5.4",
+    "socket.io": "^4.7.5"
+  }
+}
